@@ -1,0 +1,61 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Detalhes do membro - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="return">
+    <a href="/members">Voltar</a>
+  </div>
+  
+  <div class="card">
+
+    <section 
+      class="avatar"
+      style="background: url({{member.avatar_url}}) no-repeat center center / cover; border-radius: 10px 0 0 10px;"></section>
+
+    <section class="details">
+      <h3>Detalhes</h3>
+
+      <div class="item">
+        <div>Instrutor</div>
+        <div>{{ member.name }}</div>
+      </div>
+
+      <div class="item">
+        <div>Idade</div>
+        <div>{{ member.age }}</div>
+      </div>
+
+      <div class="item">
+        <div>Sexo</div>
+        <div>{{ member.gender }}</div>
+      </div>
+
+      <div class="item">
+        <div>Objetivo</Object></div>
+        <div>
+          <span>{{ member.goals }}</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <div>Peso (kg)</div>
+        <div>{{ member.weight }}</div>
+      </div>
+
+      <div class="item">
+        <div>Altura (cm)</div>
+        <div>{{ member.height }}</div>
+      </div>
+
+      <a href="/members/{{ member.id }}/edit" class="button">Editar</a>
+
+    </section>
+
+  </div>
+{% endblock %}

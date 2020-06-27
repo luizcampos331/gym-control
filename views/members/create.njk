@@ -1,0 +1,31 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Criar Membro - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="return">
+    <a href="/members">Voltar</a>
+  </div>
+
+  <form class="card" method="POST" action="/members">
+
+    <section 
+      class="avatar"
+      style="background: url('/assets/fitness.jpg') no-repeat center center / cover; border-radius: 10px 0 0 10px;">
+    </section>
+
+
+    <section class="details">
+      <h3>Novo membro</h3>
+
+      {% include 'members/fields.njk' %}
+
+    </section>
+
+  </form>
+{% endblock %}

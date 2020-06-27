@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --color-default: #a3cb34;
+  --color-red: #8a0900;
+}
+
+/*===Comum a todos as páginas===*/
+* {
+  /*Preenchimentos, margens e bordas zeradas para tudo*/
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+body {
+  /*Cor de fundo do site*/
+  background-color: var(--color-default);
+  /*Familia de fontes Roboto para o site todo*/
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  /*Cor de fundo do cabeçalho*/
+  background-color: white;
+  /*Largura total do cabeçalho*/
+  width: 100%;
+  /*Preenchimento em todos os lados*/
+  padding: 25px;
+  /*Respeitando o limite de 100% da largura*/
+  box-sizing: border-box;
+  /*alinhamento do texto*/
+  text-align: center;
+}
+
+.links {
+  /*tamanho da fonte*/
+  font-size: 22px;
+}
+
+/*Somente o A seguido de outro que receberá as propriedades*/
+.links a + a{
+  /*Margem a esquerda*/
+  margin-left: 32px;
+}
+
+.links a {
+  /*Retira sublinhado*/
+  text-decoration: none;
+  /*Cor*/
+  color: #777;
+  /*Posição relativa para configurar a absoluta nos filhos*/
+  position: relative;
+}
+
+.links a.active {
+  /*Negrito*/
+  font-weight: bold;
+  /*Cor*/
+  color: var(--color-default);
+}
+
+.links a:hover {
+  /*Cor*/
+  color: var(--color-default);
+}
+
+/*Pseudo elemento depois de a*/
+.links a::after {
+  /*Obrigatório para pseudo elementos*/
+  content: "";
+  /*largura em 0 para a animação*/
+  width: 0;
+  /*Altura*/
+  height: 3px;
+  /*Cor*/
+  background-color: var(--color-default);
+  /*Posição absoluta em relação ao pai A*/
+  position: absolute;
+  /*colado na esquerda*/
+  left: 0;
+  /*abaixo do fundo*/
+  bottom: -3px;
+}
+
+.links a:hover::after {
+  /*Largura máxima para a animação*/
+  width: 100%;
+  /*Transição será em largura com duração de 300ms*/
+  transition: width 300ms ease-in-out;
+}
+
+.return {
+  position: relative;
+  width: 800px;
+  /*Margem 45 no topo e fundo e auto nas lateriais para centralizar*/
+  margin: 15px auto;
+}
+
+.return a {
+  padding: 2px 6px;
+  background-color: #eee;
+  text-decoration: none;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+/*===Página - Instructor details===*/
+.card, .cards {
+  /*Cor de fundo*/
+  background-color: white;
+  /*Largura*/
+  width: 800px;
+  /*Altura*/
+  min-height: 400px;
+  /*Margem 45 no topo e fundo e auto nas lateriais para centralizar*/
+  margin: 15px auto;
+  /*Display de grade*/
+  display: grid;
+  /*cada elemento com 1 fração de 2*/
+  grid-template-columns: 1fr 1fr;
+  /*sombra - eixo X, eixo Y, blur, espalhamento, cor com alfa*/
+  box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.5);
+  /*Cantos arredondados*/
+  border-radius: 10px;
+  /*nome da Animação*/
+  animation-name: op;
+  /*Duração da animação*/
+  animation-duration: 900ms;
+  /*Termina suave*/
+  animation-timing-function: ease-out;
+}
+
+.cards {
+  margin: 45px auto;
+}
+
+/*Animação*/
+@keyframes op {
+  /*from = 0%*/
+  from {
+    opacity: 0;
+  }
+  /*to = 100%*/
+  to {
+    opacity: 1;
+  }
+}
+
+.details {
+  /*Preenchimento em todos os lados*/
+  padding: 32px;
+}
+
+.details h3 {
+  /*Cor do texto*/
+  color: var(--color-default);
+  /*Tamanho da fonte*/
+  font-size: 20px;
+  /*Transforma todas as letras em mausculas*/
+  text-transform: uppercase;
+  /*Espaçamento entre as letras*/
+  letter-spacing: 1px;
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+}
+
+.details .item {
+  /*Borda no fundo com 1px solida em preto com alfa*/
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /*preenchimento de 16 no topo e fundo e 0 nas laterais*/
+  padding: 16px 0;
+}
+
+/*Se aplica ao ultimo elemento de .item*/
+.details .item:last-child {
+  /*ser nenhuma borda*/
+  border: none;
+}
+
+/*Se aplica a primeira div do .item*/
+.details .item div:nth-child(1) {
+  /*Cor do texto*/
+  color: rgb(139, 138, 138);
+  /*Altura da linha*/
+  line-height: 24px;
+  /*Espaçamento entre as letras*/
+  letter-spacing: 0.7px;
+}
+
+/*Se aplica a segunda div do .item*/
+.details .item div:nth-child(2) {
+  /*Cor do texto*/
+  color: rgb(65, 65, 65);
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+  /*Tamanho da fonte*/
+  font-size: 18px;
+}
+
+.details .item span {
+  /*preenchimento de 8 no topo e fundo e 16 nas laterais*/
+  padding: 8px 16px;
+  /*cor do fundo*/
+  background-color: var(--color-red);
+  /*cor do texto*/
+  color: rgb(216, 216, 216);
+  /*arredondamento dos cantos*/
+  border-radius: 30px;
+  /*Margem esquerda*/
+  margin-right: 4px;
+  /*margem topo*/
+  margin-top: 8px;
+  /*Estratégia para respeitar o margin-top*/
+  display: inline-block;
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+  /*Transforma todas as letras em mausculas*/
+  text-transform: uppercase;
+  /*Tamanho da fonte*/
+  font-size: 13px;
+}
+
+/*===Página - Create Instructor===*/
+input, select {
+  /*Largura total*/
+  width: 100%;
+  /*sem borda ao estr com foco*/
+  outline: none;
+  /*Cor do texto*/
+  color: rgb(65, 65, 65);
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+  /*Tamanho da fonte*/
+  font-size: 18px;
+}
+
+select {
+  font-size: 18px;
+}
+
+input[type='radio'] {
+  /*Largura inicial*/
+  width: initial;
+  /*Margin de 4 na direita para separar radio do texto e 1 no fundo para centralizar*/
+  margin: 0 4px 1px 0;
+  /*Alinhamento vertical no meio*/
+  vertical-align: middle;
+}
+
+input::placeholder {
+  /*Tamanho da fonte*/
+  font-size: 16px;
+  /*Peso da fonte - normal*/
+  font-weight: normal;
+}
+
+button[type="submit"],
+a.button {
+  /*preenchimento do botão 8 no topo e fundo e 0 nas laterais*/
+  padding: 8px;
+  /*Cor de fundo*/
+  background-color: var(--color-default);
+  /*Cor do texto*/
+  color: white;
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+  /*arredondamento dos cantos*/
+  border-radius: 10px;
+  /*margem do topo*/
+  margin-top: 20px;
+  /*Largura total*/
+  width: 100%;
+  /*Tamanho da fonte*/
+  font-size: 16px;
+  /*Ponteiro pelo click*/
+  cursor: pointer;
+}
+
+/*===Página - Edit Instructors===*/
+a.button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+/*===Página - Delete Instructors===*/
+#form-delete button[type="submit"] {
+  background-color: crimson;
+  margin-top: 8px;
+}
+
+/*===Página - Instructors===*/
+.table-container {
+  /*elementos são disposto em todo o card, utilizado para sobrepor o grid anterior*/
+  display: block;
+  /*Preenchimento de todas as direções*/
+  padding: 40px;
+  /*Obedece a largura máxima imposta anteriormente*/
+  box-sizing: border-box;
+}
+
+.table-container table {
+  /*Sem espaço nas bordas*/
+  border-spacing: 0;
+}
+
+.table-container thead tr th:first-child,
+.table-container tbody tr td:first-child  {
+  /*Texto alinhado a esquerda*/
+  text-align: left;
+}
+
+td, th {
+  padding: 14px;
+  border-bottom: 1px solid #d9d9d9;
+  text-align: left;
+}
+
+th {
+  text-transform: uppercase;
+  color: #777;
+  font-size: 14px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr td:first-child {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  height: 65px;
+}
+
+tbody tr td + td {
+  max-width: 400px;
+}
+
+tbody tr td:first-child span {
+  width: 48px;
+  height: 48px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 5px 3px 10px -5px black;
+  border: 2px solid var(--color-default);
+}
+
+tbody tr td:last-child a,
+.table-container a {
+  background-color: var(--color-default);
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  border-radius: 15px;
+}
+
+.table-container .new{
+  /*Margem de 16px do fundo*/
+  margin-bottom: 16px;
+  /*Aplica a margem e não preenche toda a largura*/
+  display: inline-block;
+}
+
+.table-container thead tr th:last-child,
+td:last-child {
+  text-align: center;
+}
+
+.table-container .services{
+  /*preenchimento de 8 no topo e fundo e 16 nas laterais*/
+  padding: 6px 8px;
+  /*cor do fundo*/
+  background-color: var(--color-red);
+  /*cor do texto*/
+  color: rgb(216, 216, 216);
+  /*arredondamento dos cantos*/
+  border-radius: 30px;
+  /*Margem esquerda*/
+  margin-right: 4px;
+  /*margem topo*/
+  margin: 2px;
+  /*Estratégia para respeitar o margin-top*/
+  display: inline-block;
+  /*Peso da fonte - negrito*/
+  font-weight: bold;
+  /*Transforma todas as letras em mausculas*/
+  text-transform: uppercase;
+  /*Tamanho da fonte*/
+  font-size: 13px;
+}
+
+/* === Members === */
+.goals {
+  text-transform: uppercase;
+  text-align: center;
+}

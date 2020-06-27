@@ -1,0 +1,129 @@
+<div class="item">
+  <div>Avatar URL</div>
+  <div>
+    <input 
+      type="url" 
+      name="avatar_url"
+      placeholder="http://"
+      value="{{ member.avatar_url }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Nome Completo</div>
+  <div>
+    <input 
+      type="text"
+      name="name"
+      placeholder="Nome do membro"
+      value="{{ member.name }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>E-mail</div>
+  <div>
+    <input 
+      type="email"
+      name="email"
+      placeholder="Ex: email@email.com"
+      value="{{ member.email }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Data de nascimento</div>
+  <div>
+    <input 
+      type="date" 
+      name="birth"
+      value="{{ member.birth }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Sexo</div>
+  <div>
+    
+    <span>
+      <input 
+        type="radio" 
+        name="gender" 
+        value="M"
+        {% if member.gender == 'M'%}
+        checked
+        {% endif %}> Masculino
+    </span>
+
+    <span>
+      <input 
+        type="radio" 
+        name="gender" 
+        value="F"
+        {% if member.gender == 'F'%}
+        checked
+        {% endif %}> Feminino
+    </span>
+    
+  </div>
+</div>
+
+<div class="item">
+  <div>Objetivo</div>
+  <div>
+    <select name="goals">
+
+      <option>Escolha uma opção</option>
+
+      <option value="-peso"
+        {% if member.goals == '-peso' %} selected {% endif %}>
+        Perda de peso
+      </option>
+
+      <option value="+peso"
+        {% if member.goals == '+peso' %} selected {% endif %}>
+        Ganho de peso
+      </option>
+
+      <option value="hipertrofia"
+        {% if member.goals == 'hipertrofia' %} selected {% endif %}>
+        Hipertrofia
+      </option>
+
+      <option value="forca"
+        {% if member.goals == 'forca' %} selected {% endif %}>
+        Ganho de força
+      </option>
+
+      <option value="lutas"
+        {% if member.goals == 'lutas' %} selected {% endif %}>
+        Lutas
+      </option>
+      
+    </select>
+  </div>
+</div>
+
+<div class="item">
+  <div>Peso (kg)</div>
+  <div>
+    <input 
+      type="number"
+      name="weight"
+      placeholder="Ex: 63.6"
+      value="{{ member.weight }}">
+  </div>
+</div>
+
+<div class="item">
+  <div>Altura (cm)</div>
+  <div>
+    <input 
+      type="number"
+      name="height"
+      placeholder="Ex: 170"
+      value="{{ member.height }}">
+  </div>
+</div>
+
+<button type="submit">Salvar</button>

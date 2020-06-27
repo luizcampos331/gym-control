@@ -1,0 +1,56 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Membros - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="cards table-container">
+
+    <a class="new" href="/members/create">Novo</a>
+
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>Membro</th>
+          <th>Objetivo</th>
+          <th>Peso</th>
+          <th>Altura</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for member in members %}
+          <tr>
+
+            <td>
+              <span style="background-image: url({{ member.avatar_url }})"></span>
+              {{ member.name }}
+            </td>
+
+            <td>
+              <span class="goals">{{ member.goals }}</span>
+            </td>
+
+            <td>
+              <span>{{ member.weight }} Kg</span>
+            </td>
+
+            <td>
+              <span>{{ member.height }} cm</span>
+            </td>
+
+            <td>
+              <a href="/members/{{ member.id }}">Ver</a>
+            </td>
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock %}

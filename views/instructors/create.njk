@@ -1,0 +1,30 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Criar instrutor - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="return">
+    <a href="/instructors">Voltar</a>
+  </div>
+
+  <form class="card" method="POST" action="/instructors">
+
+    <section 
+      class="avatar"
+      style="background: url('/assets/fitness.jpg') no-repeat center center / cover; border-radius: 10px 0 0 10px;"></section>
+
+
+    <section class="details">
+      <h3>Novo instrutor</h3>
+
+      {% include 'instructors/fields.njk' %}
+
+    </section>
+
+  </form>
+{% endblock %}

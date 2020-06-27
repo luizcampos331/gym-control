@@ -1,0 +1,46 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Instrutores - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="cards table-container">
+
+    <a class="new" href="/instructors/create">Novo</a>
+
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>Instrutor</th>
+          <th>Atendimento</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for instructor in instructors %}
+          <tr>
+
+            <td>
+              <span style="background-image: url({{ instructor.avatar_url }})"></span>
+              {{ instructor.name }}
+            </td>
+
+            <td>
+              {% for service in instructor.services %}<span class="services">{{ service }}</span>{% endfor %}
+            </td>
+
+            <td>
+              <a href="/instructors/{{ instructor.id }}">Ver</a>
+            </td>
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock %}

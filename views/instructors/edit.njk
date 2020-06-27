@@ -1,0 +1,41 @@
+<!-- Extendendo as partes repetidas para o layout.njk -->
+{% extends "layout.njk" %}
+
+<!-- Conteúdo do bloco head irá substituir o head no layout.njk -->
+{% block head %}
+  <title>Editar instrutor - Gym Control</title>
+{% endblock %}
+
+<!-- Conteúdo do bloco content irá substituir o conteúdo no layout.njk -->
+{% block content %}
+  <div class="return">
+    <a href="/instructors/{{ instructor.id }}">Voltar</a>
+  </div>
+
+  <div class="card">
+      <section 
+        class="avatar"
+        style="background: url({{ instructor.avatar_url }}) no-repeat center center / cover; border-radius: 10px 0 0 10px;">
+      </section>
+
+    <section class="details">
+      <!-- ?_method=PUT irá transformar o method desse formulário em PUT -->
+      <form method="POST" action="/instructors?_method=PUT">
+
+          <h3>Editar instrutor</h3>
+
+          {% include 'instructors/fields.njk' %}
+
+          <!-- Input ficará escondido, servirá para disponibilizar o id do instrutor
+          para que o mesmo ter possa seus dados atualizados -->
+          <input type="hidden" name="id" value={{ instructor.id }}> 
+
+      </form>
+
+      <form id="form-delete" method="POST" action="/instructors?_method=DELETE">
+        <input type="hidden" name="id" value={{ instructor.id }}>
+        <button type="submit">Deletar</button>
+      </form>
+    </section>
+  </div>
+{% endblock %}
