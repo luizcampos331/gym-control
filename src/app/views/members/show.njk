@@ -33,7 +33,7 @@
 
       <div class="item">
         <div>Sexo</div>
-        <div>{{ member.gender }}</div>
+        <div>{% if member.gender == 'M'%}Masculino{% else %}Feminino{% endif %}</div>
       </div>
 
       <div class="item">

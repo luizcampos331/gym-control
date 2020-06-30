@@ -14,16 +14,23 @@
 </p>
 
 ## :bookmark: Sobre
-Sistema de gerenciamento de instrutores e membros de uma academia...
+Sistema de gerenciamento de instrutores e membros de uma academia. </br>
+Ainda em desenvolvimento...
 
 ## :computer: Tecnologias Utilizadas
+FRONT-END:
 - HTML
 - CSS
 - JavaScript
-- NodeJS
-- Express
 - Nunjucks
 
+BACK-END:
+- NodeJS
+- Express
+- Method Override
+
+BANCO DE DADOS:
+- PostgreSQL
 ## :dart: Objetivo
 Sistema tem como objetivo disponibilizar:
 - Página de listagem, detalhes, cadastro, edição e exclusão de instrutores

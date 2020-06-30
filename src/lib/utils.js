@@ -1,5 +1,6 @@
 module.exports = {
-  age: function(timestamp) {
+  // === Calcula idade com base em timestamp ===
+  age(timestamp) {
     //Salva a data de hoje
     const today = new Date();
     //Converte o paramtro timestamp em data comum
@@ -17,7 +18,9 @@ module.exports = {
     
     return age;
   },
-  date: function(timestamp) {
+
+  // === Converte timestamp em data
+  date(timestamp) {
     const date = new Date(timestamp);
 
     //Pega o ano yyyy
@@ -31,9 +34,14 @@ module.exports = {
     //Pega o dia dd
     const day = `0${date.getUTCDate()}`.slice(-2);
 
-    return `${year}-${month}-${day}`;
+    return {
+      iso: `${year}-${month}-${day}`,
+      format: `${day}/${month}/${year}`,
+    }
   },
-  goals: function(goal) {
+
+  // === Correção do texto dos opations - seletcs ===
+  goals(goal) {
     switch(goal) {
       case "-peso":
         return "Perda de peso"

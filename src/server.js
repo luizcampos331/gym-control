@@ -26,7 +26,7 @@ server.use(routes);
 server.set('view engine', 'njk');
 
 //configurando o nunjucks para a pasta de views
-nunjucks.configure('views', {
+nunjucks.configure('src/app/views', {
   //definindo o uso do express e a variavel que o mesmo esta usando
   express: server,
   //permite tags html dentro de variáveis neste arquivo
@@ -36,4 +36,4 @@ nunjucks.configure('views', {
 });
 
 //Server ouvindo pedidos na porta 5000
-server.listen(5001);
+server.listen(5000);

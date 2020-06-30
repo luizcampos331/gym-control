@@ -1,7 +1,7 @@
 const express = require('express');
 
-const instructors = require('./controllers/instructors');
-const members = require('./controllers/members');
+const instructors = require('./app/controllers/instructors');
+const members = require('./app/controllers/members');
 
 //Express da a variável a responsabilidade pelas rotas
 const routes = express.Router();
