@@ -4,24 +4,46 @@ const { age, date, goals } = require('../../lib/utils');
 module.exports = {
   // === Método Index - Visualizar página ===
   index(req, res){
-    /*Chamo a function all do js Member, passo para ela uma function de
-    renderização da tela de listagem dos instrutores. Recebendo os dados dos
-    memberes da function all pelo callback*/
-    Member.all(function(members) {
+    let { filter, page, limit } = req.query;
 
-      for(let i = 0; i < members.length; i++) {
-        members[i].goals = goals(members[i].goals);
+    //page recebe ele mesmo ou 1 caso ele esteja vazio
+    page = page || 1;
+    //limit recebe ele mesmo ou 2 caso ele esteja vazio
+    limit = limit || 2;
+    //Tendo os valores padrões acima, offset recebe 2 * (1 - 1) = 0
+    let offset = limit * (page - 1);
+
+    // Cria objeto params
+    const params = {
+      filter,
+      limit,
+      offset,
+      callback(members) {
+        const pagination = {
+          //Math.ceil arredonda para cima
+          total: Math.ceil(members[0].total / limit),
+          page
+        }
+
+        for(let i = 0; i < members.length; i++) {
+          members[i].goals = goals(members[i].goals)
+        }
+
+        //Retorna página de instrutores renderizada
+        return res.render('members/index', { members, pagination, filter });
       }
+    }
 
-      //Retorna página de instrutores renderizada
-      return res.render('members/index', { members });
-    });
+    // Inicia o paginate passado o objeto params como parametro
+    Member.paginate(params);
   },
 
   // === Método Create - Visualizar página ===
   create(req, res){
-    //Retorna página de criação de instrutores
-    return res.render('members/create');
+    Member.instructorsSelectOptions(function(options) {
+      //Retorna página de criação de instrutores
+      return res.render('members/create', { instructorOptions: options });
+    })
   },
 
   // === Método Post - Ação ===
@@ -57,7 +79,6 @@ module.exports = {
       //Formato os dados necessários
       member.age = age(member.birth);
       member.goals = goals(member.goals);
-      member.created_at = date(member.created_at).format;
 
       //Returno a página renderizada com as insformações do instrutor
       return res.render('members/show', { member });
@@ -76,9 +97,11 @@ module.exports = {
       //Formato os dados necessários
       member.birth = date(member.birth).iso;
 
-      //Returno a página renderizada com as insformações do instrutor
-      return res.render('members/edit', { member });
-    })
+      Member.instructorsSelectOptions(function(options) {
+        //Returno a página renderizada com as insformações do instrutor
+        return res.render('members/edit', { member, instructorOptions: options });
+      });
+    });
   },
 
   // === Método Update - Ação ===

@@ -4,20 +4,40 @@ const { age, date } = require('../../lib/utils');
 module.exports = {
   // === Método Index - Visualizar página ===
   index(req, res){
-    /*Chamo a function all do js Instructor, passo para ela uma function de
-    renderização da tela de listagem dos instrutores. Recebendo os dados dos
-    instructores da function all pelo callback*/
-    Instructor.all(function(instructors) {
+    //Obtendo parametros passados pela URL (query usado após o ? em uma URL)
+    let { filter, page, limit } = req.query;
+
+    //page recebe ele mesmo ou 1 caso ele esteja vazio
+    page = page || 1;
+    //limit recebe ele mesmo ou 2 caso ele esteja vazio
+    limit = limit || 2;
+    //Tendo os valores padrões acima, offset recebe 2 * (1 - 1) = 0
+    let offset = limit * (page - 1);
+
+    // Cria objeto params
+    const params = {
+      filter,
+      limit,
+      offset,
+      callback(instructors) {
+        const pagination = {
+          //Math.ceil arredonda para cima
+          total: Math.ceil(instructors[0].total / limit),
+          page
+        }
 
         //Percorre o array de instrutors
         for(let i = 0; i < instructors.length; i++){
           //Separa os serviços dos instrutores em um array de serviços para apresentação
           instructors[i].services = instructors[i].services.split(',');
         }
+        //Retorna página de instrutores renderizada
+        return res.render('instructors/index', { instructors, pagination, filter });
+      }
+    }
 
-      //Retorna página de instrutores renderizada
-      return res.render('instructors/index', { instructors });
-    });
+    // Inicia o paginate passado o objeto params como parametro
+    Instructor.paginate(params);
   },
 
   // === Método Create - Visualizar página ===

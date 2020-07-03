@@ -277,6 +277,7 @@ a.button {
   font-size: 16px;
   /*Ponteiro pelo click*/
   cursor: pointer;
+  outline: 0;
 }
 
 /*===Página - Edit Instructors===*/
@@ -290,6 +291,7 @@ a.button {
 #form-delete button[type="submit"] {
   background-color: crimson;
   margin-top: 8px;
+  outline: 0;
 }
 
 /*===Página - Instructors===*/
@@ -310,13 +312,17 @@ a.button {
 .table-container thead tr th:first-child,
 .table-container tbody tr td:first-child  {
   /*Texto alinhado a esquerda*/
-  text-align: left;
+  text-align: center;
 }
 
 td, th {
   padding: 14px;
   border-bottom: 1px solid #d9d9d9;
-  text-align: left;
+  text-align: center;
+}
+
+td:nth-child(3) {
+  text-align: center;
 }
 
 th {
@@ -330,8 +336,7 @@ tbody tr:last-child td {
 }
 
 tbody tr td:first-child {
-  display: grid;
-  grid-template-columns: 64px 1fr;
+  display: flex;
   align-items: center;
   height: 65px;
 }
@@ -348,10 +353,14 @@ tbody tr td:first-child span {
   border-radius: 50%;
   box-shadow: 5px 3px 10px -5px black;
   border: 2px solid var(--color-default);
+  margin: 0 10px;
 }
 
-tbody tr td:last-child a,
-.table-container a {
+tbody tr td:first-child p {
+  margin-left: 10px;
+}
+
+tbody tr td:last-child a {
   background-color: var(--color-default);
   padding: 8px 16px;
   text-decoration: none;
@@ -360,13 +369,45 @@ tbody tr td:last-child a,
   color: white;
   font-size: 14px;
   border-radius: 15px;
+  text-align: center;
 }
 
-.table-container .new{
-  /*Margem de 16px do fundo*/
-  margin-bottom: 16px;
-  /*Aplica a margem e não preenche toda a largura*/
-  display: inline-block;
+/*Filtros*/
+.table-container .header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.table-container .header a,
+.table-container .header form button {
+  background-color: var(--color-default);
+  padding: 8px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  border-radius: 15px;
+  text-align: center;
+  outline: 0;
+  margin: 0;
+  width: 100px;
+}
+
+.table-container .header form {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+.table-container .header form input {
+  border: 1px solid #aaa;
+  border-radius: 15px;
+  padding: 4px 10px;
+  box-sizing: border-box;
 }
 
 .table-container thead tr th:last-child,
@@ -401,4 +442,34 @@ td:last-child {
 .goals {
   text-transform: uppercase;
   text-align: center;
+}
+
+/* === Paginação ===*/
+.table-container {
+  display: grid;
+  grid-template: 64px 1fr 16px / 1fr;
+}
+
+.table-container .header {
+  margin: 0;
+  align-self: start;
+}
+
+.table-container .pagination {
+  margin: 0;
+  align-self: end;
+  justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+  color: var(--color-default);
+  text-decoration: none;
+  margin-right: 16px;
+  font-weight: bold;
+}
+
+.pagination a:hover {
+  filter: brightness(0.3);
+  border-bottom: 1px solid var(--color-default);
 }
